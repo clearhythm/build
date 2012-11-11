@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Welcome to Foundation | Blog</title>
+
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="stylesheets/app.css">
+
+  <script src="javascripts/modernizr.foundation.js"></script>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<style>
+    section { position: relative }
+</style>
+
+</head>
+<body>
+    <h3>Components</h3>
+    <h4>Nav</h4>
+
+
+    <ul class="nav-bar right">
+      <li><a href="#">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+      <li><a href="#">Link 4</a></li>
+    </ul>
+
+    <!-- Header and Nav -->
+
+    <div class="row">
+      <div class="three columns">
+        <h1><img src="http://placehold.it/400x100&text=Logo" /></h1>
+      </div>
+      <div class="nine columns">
+        <ul class="nav-bar right">
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 2</a></li>
+          <li><a href="#">Link 3</a></li>
+          <li><a href="#">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- End Header and Nav -->
+
+    <!-- Nav and Banner -->
+
+    <div class="row">
+      <div class="twelve columns">
+        <ul class="nav-bar">
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 2</a></li>
+          <li><a href="#">Link 3</a></li>
+          <li><a href="#">Link 4</a></li>
+          <li><a href="#">Link 5</a></li>
+          <li><a href="#">Link 6</a></li>
+          <li><a href="#">Link 7</a></li>
+        </ul>
+
+        <!-- Main Banner Image - place in a paragraph to enforce the modular scale spacing -->
+        <p><img src="http://placehold.it/1000x400&text=[banner img]" /></p>
+      </div>
+    </div>
+
+    <!-- End Nav and Banner -->
+
+    <!-- Top Bar -->
+
+    <nav class="top-bar">
+      <ul>
+        <!-- Title Area -->
+        <li class="name">
+          <h1>
+            <a href="#">
+              Top Bar Title
+            </a>
+          </h1>
+        </li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+
+      <section>
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <a href="#">Main Item 1</a>
+            <ul class="dropdown">
+              <li><label>Section Name</label></li>
+              <li class="has-dropdown">
+                <a href="#" class="">Has Dropdown, Level 1</a>
+                <ul class="dropdown">
+                  <li><a href="#">Dropdown Options</a></li>
+                  <li><a href="#">Dropdown Options</a></li>
+                  <li><a href="#">Level 2</a></li>
+                  <li><a href="#">Subdropdown Option</a></li>
+                  <li><a href="#">Subdropdown Option</a></li>
+                  <li><a href="#">Subdropdown Option</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li class="divider"></li>
+              <li><label>Section Name</label></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li class="divider"></li>
+              <li><a href="#">See all &rarr;</a></li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+          <li><a href="#">Main Item 2</a></li>
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <a href="#">Main Item 3</a>
+            <ul class="dropdown">
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li class="divider"></li>
+              <li><a href="#">See all &rarr;</a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+    <!-- End Top Bar -->
+
+    <!-- Header and Nav -->
+
+    <nav class="top-bar">
+      <ul>
+        <!-- Title Area -->
+        <li class="name">
+          <h1>
+            <a href="#">
+              Top Bar Title
+            </a>
+          </h1>
+        </li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+
+      <section>
+        <!-- Left Nav Section -->
+        <ul class="left">
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <a class="active" href="#">Main Item 1</a>
+            <ul class="dropdown">
+              <li><label>Section Name</label></li>
+              <li><a href="#" class="">Dropdown Level 1</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li class="divider"></li>
+              <li><label>Section Name</label></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li class="divider"></li>
+              <li><a href="#">See all &rarr;</a></li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+          <li><a href="#">Main Item 2</a></li>
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <a href="#">Main Item 3</a>
+            <ul class="dropdown">
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li class="divider"></li>
+              <li><a href="#">See all &rarr;</a></li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+        </ul>
+
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <a href="#">Main Item 4</a>
+            <ul class="dropdown">
+              <li><label>Section Name</label></li>
+              <li class="has-dropdown">
+                <a href="#" class="">Has Dropdown, Level 1</a>
+                <ul class="dropdown">
+                  <li><a href="#">Dropdown Options</a></li>
+                  <li><a href="#">Dropdown Options</a></li>
+                  <li class="has-dropdown">
+                    <a href="#">Has Dropdown, Level 2</a>
+                    <ul class="dropdown test">
+                      <li><a href="#">Subdropdown Option</a></li>
+                      <li><a href="#">Subdropdown Option</a></li>
+                      <li><a href="#">Subdropdown Option</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Subdropdown Option</a></li>
+                  <li><a href="#">Subdropdown Option</a></li>
+                  <li><a href="#">Subdropdown Option</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li class="divider"></li>
+              <li><label>Section Name</label></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li class="divider"></li>
+              <li><a href="#">See all &rarr;</a></li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+          <li><a href="#">Main Item 5</a></li>
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <a href="#">Main Item 6</a>
+            <ul class="dropdown">
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li><a href="#">Dropdown Option</a></li>
+              <li class="divider"></li>
+              <li><a href="#">See all &rarr;</a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+    <!-- End Header and Nav -->
+
+    <!-- Header and Nav -->
+
+    <div class="row">
+      <div class="three columns">
+        <h1><img src="http://placehold.it/400x100&text=Logo" /></h1>
+      </div>
+      <div class="nine columns">
+        <ul class="link-list right">
+          <li><a href="#">Section 1</a></li>
+          <li><a href="#">Section 2</a></li>
+          <li><a href="#">Section 3</a></li>
+          <li><a href="#">Section 4</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- End Header and Nav -->
+
+</body>
+</html>

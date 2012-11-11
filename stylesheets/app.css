@@ -1,0 +1,247 @@
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+body { background-color: #fff; }
+
+body.test {
+    background: url('../images/build/build_bg_tile_invert.png') repeat 0 0 transparent;
+}
+
+small { font-size: 80%; line-height: inherit; }
+
+
+/* The top bar */
+.top-bar {
+    height: 48px;
+    line-height: 48px;
+    margin: 0 0 30px;
+    padding: 0;
+}
+.top-bar {
+    margin-bottom: 0;
+}
+
+.top-bar .attached {
+    background: none repeat scroll 0 0 #333333;
+    border-color: #000000;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 0 1px;
+    color: #FFFFFF;
+    font-family: "Helvetica",Arial,sans-serif;
+    height: 48px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 250;
+}
+.top-bar a, .top-bar a:hover {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.top-bar.platform .attached a {
+    text-decoration: none;
+}
+.top-bar .attached a.toggle-nav {
+    display: none;
+}
+.top-bar .attached > ul.right > li {
+    border-left: 1px solid #000000;
+    border-right: medium none;
+}
+.top-bar .attached > ul > li {
+    border-right: 1px solid #555555;
+    display: block;
+    float: left;
+    height: 48px;
+    position: relative;
+}
+
+.top-bar.platform {
+    font-size: 14px;
+    height: 48px;
+    line-height: 48px;
+    background: transparent;
+}
+.top-bar.platform .attached {
+    background-color: rgba(43, 43, 43, 0.95);
+    font-family: "Proxima","Helvetica",Arial,sans-serif;
+    border-bottom: 3px solid #93278F;
+}
+
+.top-bar.platform.home .attached > .name {
+    background: url("../images/build/platform-bar-logo.png") no-repeat 4px 0;
+    border: medium none;
+    height: 45px;
+    line-height: 48px;
+    width: 94px;
+    float: left;
+}
+.top-bar.platform.home .attached > .name:hover { background-position: 4px -45px; }
+.top-bar.platform.home .attached > .name:hover .dropdown { display: block; }
+
+.top-bar.platform .attached > .name > a.home {
+    color: #FFFFFF;
+    display: block;
+    font-size: 14px !important;
+    text-indent: -9999px;
+}
+
+.top-bar .attached > ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar .attached > ul.right > li > a {
+    border-left: 1px solid #555555;
+    border-right: medium none;
+}
+.top-bar.platform .attached a {
+    text-decoration: none;
+}
+.top-bar .attached > ul > li > a, .top-bar .attached > ul > li > span {
+    border-right: 1px solid #000000;
+    display: block;
+    font-weight: bold;
+    height: 48px;
+    padding: 0 20px;
+}
+.top-bar a, .top-bar a:hover {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+/* Left nav bar stuff */
+.top-bar.platform .attached > .name .dropdown { background: none repeat scroll 0 0 #333333; height: auto; display: none; left: 15px; margin: 0; padding: 8px 0; position: absolute; top: 45px; width: auto; z-index: 101; }
+.top-bar.platform .attached > .name .dropdown > li { display: block; float: none; line-height: 1.4; margin: 0; padding: 0 20px; position: relative; white-space: nowrap; }
+.top-bar.platform .attached > .name .dropdown > li a { display: block; float: none; margin: 0 -20px; padding: 4px 20px; line-height: inherit; font-size: 14px; font-weight: normal }
+.top-bar.platform .attached > .name .dropdown > li a:hover { background-color: #393939 }
+.top-bar.platform .attached > .name small { color: #999999; display: block; }
+
+.top-bar.platform .new_page, .top-bar.platform .new_page:hover { width: 140px; }
+.top-bar.platform .settings, .top-bar.platform .settings:hover { width: 96px; }
+
+.drop_menu .dropdown { height: auto; }
+.drop_menu:hover .dropdown { display: block; }
+.drop_menu .dropdown { display: none; background-color: #000; position: relative; left: -20px; width: 200px; padding: 8px 0 }
+.drop_menu .dropdown li, .drop_menu .dropdown li a { display: block; float: none; font-weight: normal !important; }
+.drop_menu .dropdown li a { line-height: 30px !important; height: 30px !important }
+.drop_menu .dropdown li:hover { background-color: #333; }
+.drop_menu .dropdown li { padding: 0; margin: 0; }
+.drop_menu .dropdown li a { padding: 0; margin: 0; line-height: inherit; }
+
+/* ... settings styles */
+.top-bar .settings .value { float: right }
+
+/* Right nav bar stuff */
+.top-bar .right { position: absolute; top: 6px; right: 0; }
+.top-bar .right img { margin: 0; }
+.top-bar .right .device_picker { position: relative; list-style: none; padding: 0; margin: 0 0 0 0; }
+.top-bar .right .device_picker li, .top-bar .right .device_picker li a { padding: 0; margin: 0; }
+.top-bar .right .device_picker li a { margin: 0 2px; }
+.top-bar .right .device_picker li:hover, .top-bar .right .device_picker li.active { background: none }
+.top-bar .right .device_picker img { opacity: .4; }
+.top-bar .right .device_picker .selected img { opacity: 1; }
+.top-bar .right .button { position: relative; top: -6px; margin: 0 14px 0 8px; }
+
+.page_wrapper { margin: 0 auto; position: relative; left: 150px }
+
+.row .row {
+    margin: 0 -15px;
+    max-width: none;
+    min-width: 0;
+    width: auto;
+}
+
+/* Viewport-specific styles */
+.page_wrapper { width: 1000px; } /* default values */
+.page_wrapper .page_frame { width: 1000px; /*margin-top: 20px; */} /* default values */
+
+.page_wrapper.desktop { width: 1400px; }
+.page_wrapper.desktop .page_frame { width: 1400px; }
+
+.page_wrapper.laptop { width: 1000px; }
+.page_wrapper.laptop .page_frame { width: 1000px; }
+
+.page_wrapper.tablet { width: 900px; }
+.page_wrapper.tablet .page_frame { width: 900px; }
+
+.page_wrapper.phone { width: 320px; }
+.page_wrapper.phone .page_frame { width: 320px; }
+
+.page_frame { background: none; border: 0; overflow: hidden; min-height: 800px; }
+.opaque { opacity: 0 }
+
+/* The Composer */
+.composer { position: absolute; left: 0; top: 48px; width: 300px; height: 100%; background-color: #f3f3f3; opacity: 1; z-index: 200 } /* default values */
+.composer:hover { opacity: 1 } /* default values */
+.composer h5, .composer h6 { margin: 12px 0; padding: 0; position: relative; top: 4px; left: 14px; }
+.composer hr { margin-bottom: 0; padding-bottom: 0; }
+
+.composer .toolbar_buttons { position: absolute; right: 12px; top: 12px; }
+.composer .shortcut { text-decoration: underline; font-weight: bold }
+
+/* ...tree view */
+.composer.hover { box-shadow: 2px 2px 8px #999; }
+.composer #tree { width: 100%; margin-top: 20px; padding: 0; list-style: none; }
+.composer #tree ul { margin: 0; padding: 0; list-style: none; }
+.composer #tree li { padding: 0; margin: 0; font-weight: bold; }
+/* ...individual node styles */
+.composer #tree li > span { cursor: pointer; display: block; border: 1px solid #f3f3f3; color: #222; }
+.composer #tree li > span.selected { background-color: #e2e2e2; border-color: #ddd; }
+.composer #tree li > span { text-indent: 14px; }
+.composer #tree li li > span { text-indent: 24px; }
+.composer #tree li li li > span { text-indent: 34px; }
+.composer #tree li li li li > span { text-indent: 44px; }
+.composer #tree li li li li li > span { text-indent: 54px; }
+.composer #tree li li li li li li > span { text-indent: 64px; }
+.composer #tree li li li li li li li > span { text-indent: 74px; }
+.composer #tree li li li li li li li li > span { text-indent: 84px; }
+.composer #tree li li li li li li li li li > span { text-indent: 94px; }
+/* ... actions buttons for rows in the tree view */
+.composer #tree_actions { display: none; position: relative; top: -2px; right: 12px; float: right; text-indent: 0; }
+.composer span.selected #tree_actions { display: block }
+.composer #tree_actions b { text-decoration: underline; font-weight: bold }
+.composer #tree_actions .button.dropdown > ul { left: auto; right: -1px; }
+.composer #tree_actions .button.dropdown > ul { top: 22px !important; } /* hack to fix Foundation's inability to have menu hidden at first */
+
+/* ...key view */
+.composer #key { display: none; margin-top: 20px }
+.composer #key table { width: 280px; position: relative; left: 10px }
+.composer #key table .title { background-color: #2BA6CB; }
+.composer #key table .title td { color: #fff; padding: 5px 10px; }
+.composer #key td { padding: 3px 10px; }
+.composer #key td:first-child { width: 90%; }
+.composer #key td + td { font-weight: bold; text-align: center; color: #444; text-decoration: underline; }
+
+/* Helpers */
+.left { float: left; }
+.right { float: right; }
+.hide { display: none; }
+.invisible { opacity: 0 }
+
+/* Hacks to fix global Foundation library */
+.button.dropdown.secondary span:after { border-color: #000 transparent transparent }
+
+/* -----------------------------------------
+   Page Name 1
+----------------------------------------- */
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+

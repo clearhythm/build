@@ -1,0 +1,66 @@
+For TODAY
+
+---
+DEMO
+---
+1) Wire up template click targets
+$(".template_link").onClick handler:
+a) find "template type" from data attribute (e..g, data-template="row")
+b) call a function addNode(currentNode, )
+
+append : add as last child
+prepand: add as first child
+before: add before (as a sibling before)
+after: add after (as a sibling after)
+
+
+addNode(to_node)
+
+
+
+2) Create a global id (attached to window object) and autoincrement on every click / addition of an element
+3) So, we'll need some sort of "create new element" function that takes the name of a template, a location, and attaches the new node
+4) Wrap these new targets in the id
+5) Have a function that translates a global id (e.g., 16) into its corresponding "tree view" id (perhaps, "tree_node_16") and "page" id (e.g., "page_node_16")
+6) Have another function that translates a tree or page view id (e.g., "tree_node_16" or "page_node_16") back into its corresponding id (16)
+7) Create a dialog that appears the first time a user clicks the "Insert" button that explains how to use the site via the keyboard shortcuts (or the button), perhaps with a button that allows people to "dismiss" or "Create a Node right now"
+
+
+
+
+
+
+Some Dev Improvements
+* Use Ember.js to automate data updates to templates and have a cleaner way to represent data and output the page
+* Better Organize the Handlebars Templates
+* Better detect content load of the iFrame
+* Get clean HTML from emberjs / handlebars.js application
+* Fix Firefox bug with hovering the tree and using arrow keys
+--
+* Compress the jquery.hotkeys.js file
+
+
+Ember.js Tutorial
+http://emberjs.com/
+http://emberjs.com/documentation/
+http://www.adobe.com/devnet/html5/articles/flame-on-a-beginners-guide-to-emberjs.html
+http://andymatthews.net/code/emberTweets/#
+
+Organize the Handlebars Templates
+http://www.jblotus.com/2011/05/24/keeping-your-handlebars-js-templates-organized/
+
+Get a better handle on detecting Load of the iFrame
+http://stackoverflow.com/questions/751435/detecting-when-iframe-content-has-loaded-cross-browser
+http://stackoverflow.com/questions/1654017/how-to-expose-iframes-dom-using-jquery/11874986#11874986
+
+Get clean HTML from emberjs / handlebars.js application
+http://stackoverflow.com/questions/10103150/get-clean-html-from-emberjs-handlebars-application
+
+Hook up an actual tree view in left rail
+http://labs.abeautifulsite.net/archived/jquery-fileTree/demo/
+
+Notes on the Hotkeys file, what can / can't use
+https://github.com/tzuryby/jquery.hotkeys
+
+
+

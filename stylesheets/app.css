@@ -186,17 +186,18 @@ small { font-size: 80%; line-height: inherit; }
 .opaque { opacity: 0 }
 
 /* The Composer */
-.composer { position: absolute; left: 0; top: 48px; width: 300px; height: 100%; background-color: #f3f3f3; opacity: 1; z-index: 200 } /* default values */
+.composer { position: absolute; left: 0; top: 48px; width: 300px; min-height: 100%; background-color: #f3f3f3; opacity: 1; z-index: 200 } /* default values */
 .composer:hover { opacity: 1 } /* default values */
 .composer h5, .composer h6 { margin: 12px 0; padding: 0; position: relative; top: 4px; left: 14px; }
 .composer hr { margin-bottom: 0; padding-bottom: 0; }
 
 .composer .toolbar_buttons { position: absolute; right: 12px; top: 12px; }
-.composer .shortcut { text-decoration: underline; font-weight: bold }
+
+.shortcut { text-decoration: underline; font-weight: bold }
 
 /* ...tree view */
 .composer.hover { box-shadow: 2px 2px 8px #999; }
-.composer #tree { width: 100%; margin-top: 20px; padding: 0; list-style: none; }
+.composer #tree { width: 100%; margin-top: 20px; padding: 10px 0 0; border-top: 1px solid #ddd; list-style: none; text-transform: lowercase; }
 .composer #tree ul { margin: 0; padding: 0; list-style: none; }
 .composer #tree li { padding: 0; margin: 0; font-weight: bold; }
 /* ...individual node styles */
@@ -226,6 +227,7 @@ small { font-size: 80%; line-height: inherit; }
 .composer #key td { padding: 3px 10px; }
 .composer #key td:first-child { width: 90%; }
 .composer #key td + td { font-weight: bold; text-align: center; color: #444; text-decoration: underline; }
+.composer #key .glyph { text-decoration: none; color: #000; }
 
 /* Helpers */
 .left { float: left; }

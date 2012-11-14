@@ -4,6 +4,34 @@
 // ----------------------------------------------------------
 
 $page = isset($_GET["page"]) ? $_GET["page"] : 'blank';
+$page = ($page != "banded") ? 'blank' : 'banded'; // just make site work with blank and banded for now
+
+// Template Nodes : short-term solution to get the templates to work by hard-coding the number of page nodes within the template
+// A longer-term (better) solution would be to read those templates in dynamically using the templating solution to precompile the pages
+$num_nodes = 0; // initialize
+switch ($page) {
+  case 'blank':
+    $num_nodes = 3;
+    break;
+  case 'banded':
+    $num_nodes = 43;
+    break;
+  case 'contact':
+    $num_nodes = 10;
+    break;
+  case 'feed':
+    $num_nodes = 10;
+    break;
+  case 'grid':
+    $num_nodes = 10;
+    break;
+  case 'orbit':
+    $num_nodes = 10;
+    break;
+  case 'sidebar':
+    $num_nodes = 10;
+    break;
+}
 
 // ----------------------------------------------------------
 // HTML Rendering
@@ -55,18 +83,18 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 'blank';
     </div>
     <ul class="left">
         <li class="drop_menu new_page">
-            <a href="">+ Build a Page</a>
+            <a href="/index.php">+ Build a Page</a>
             <ul class="dropdown">
                 <li><a href="?page=blank">Blank Page</a></li>
-                <li><a href="?page=templated">Templated</a></li>
-                <li><a href="?page=components">Components</a></li>
+                <!-- <li><a href="?page=templated">Templated</a></li>
+                <li><a href="?page=components">Components</a></li> -->
                 <li><a href="?page=banded">Banded</a></li>
-                <li><a href="?page=banner">Banner</a></li>
+                <!-- <li><a href="?page=banner">Banner</a></li>
                 <li><a href="?page=contact">Contact</a></li>
                 <li><a href="?page=feed">Feed</a></li>
                 <li><a href="?page=grid">Grid</a></li>
                 <li><a href="?page=orbit">Orbit</a></li>
-                <li><a href="?page=sidebar">Sidebar</a></li>
+                <li><a href="?page=sidebar">Sidebar</a></li> -->
             </ul>
         </li>
         <li class="drop_menu settings">
@@ -118,32 +146,26 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 'blank';
     <a href="#" class="insert small secondary button view_key"><span class="shortcut">I</span>nsert</a>
   </div>
   <ul id="tree">
-    <li><span id="tree_0" data-template="row">Row</span>
-      <ul>
-        <li><span id="tree_1" data-template="column3">Three Columns</span>
-          <ul>
-              <li><span id="tree_2" data-template="h1">H1</span></li>
-              <li><span id="tree_3" data-template="image">Image</span></li>
-          </ul>
-        </li>
-        <li><span id="tree_4" data-template="column9">Nine Columns</span>
-          <ul>
-            <li><span id="tree_5" data-template="h1">Nav-bar</span>
-              <ul>
-                <li><span id="tree_6" data-template="a">Link 1</span></li>
-                <li><span id="tree_7" data-template="a">Link 2</span></li>
-                <li><span id="tree_8" data-template="a">Link 3</span></li>
-                <li><span id="tree_9" data-template="a">Link 4</span></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+    <?php if ($page == "banded") include 'banded_tree.html'; ?>
   </ul>
   <div id="key" class="hide">
     <h6>Keyboard Shortcuts</h6>
     <table>
+      <tr class="title">
+        <td colspan="2">Navigation</td>
+      </tr>
+      <tr>
+        <td>Navigate up in tree</td>
+        <td class="glyph">&uarr;</td>
+      </tr>
+      <tr>
+        <td>Navigate down in tree</td>
+        <td class="glyph">&darr;</td>
+      </tr>
+      <tr>
+        <td>Toggle on / off (<em>shift-a</em>)</td>
+        <td>A</td>
+      </tr>
       <tr class="title">
         <td colspan="2">Insertion, Deletion</td>
       </tr>
@@ -275,6 +297,9 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 'blank';
 <script src="javascripts/jquery.hotkeys.js"></script>
 
 <!-- Initialize JS Plugins -->
+<script type="text/javascript">
+  window.num_nodes = <?php echo $num_nodes; ?>;
+</script>
 <script src="javascripts/app.js"></script>
 <script src="javascripts/test_app.js"></script>
 
@@ -300,15 +325,43 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 'blank';
 </script>
 
 <script type="text/javascript">
-    var source   = $("#template-p").html();
-    var template = Handlebars.compile(source);
+  window.template = {};
+  window.template.p = Handlebars.compile($("#template-p").html());
+  window.template.h1 = Handlebars.compile($("#template-h1").html());
+  window.template.h2 = Handlebars.compile($("#template-h2").html());
+  window.template.h3 = Handlebars.compile($("#template-h3").html());
+  window.template.h4 = Handlebars.compile($("#template-h4").html());
+  window.template.h5 = Handlebars.compile($("#template-h5").html());
+  window.template.h6 = Handlebars.compile($("#template-h6").html());
+  var data2 = { users: [
+      {username: "pagewrapper", firstName: "Page", lastName: "Wrapper", email: "ryan@test.com" }
+      ]};
+
+  function attachNewTemplate(template, node_id, method)
+  {
     var data = {
-        copy: "Paragraphy copy",
+        copy: "Bacon ipsum dolor sit amet",
         heading: "Heading",
         subheading: "Subheading" };
-    var data2 = { users: [
-        {username: "pagewrapper", firstName: "Page", lastName: "Wrapper", email: "ryan@test.com" }
-        ]};
+    var newNode = template(data);
+
+    // Note : the below functions are beginning to work, but comment out for push
+    // if (node_id == "body") $("#page_frame").contents().find("body").append(newNode);
+    // else $("#page_frame").contents().find("#view_"+node_id).append(newNode);
+    // if (method == "prepend")
+    // {
+    //   $('')
+    // }
+    // else if (method == "append")
+    // {
+    //   
+    // }
+    // else if (method == "into")
+    // {
+    //   
+    // }
+  }
+
 </script>
 
 

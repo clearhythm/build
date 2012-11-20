@@ -202,22 +202,27 @@ small { font-size: 80%; line-height: inherit; }
 .composer #tree li { padding: 0; margin: 0; font-weight: bold; }
 /* ...individual node styles */
 .composer #tree li > span { cursor: pointer; display: block; border: 1px solid #f3f3f3; color: #222; }
-.composer #tree li > span.selected { background-color: #e2e2e2; border-color: #ddd; }
-.composer #tree li > span { text-indent: 14px; }
-.composer #tree li li > span { text-indent: 24px; }
-.composer #tree li li li > span { text-indent: 34px; }
-.composer #tree li li li li > span { text-indent: 44px; }
-.composer #tree li li li li li > span { text-indent: 54px; }
-.composer #tree li li li li li li > span { text-indent: 64px; }
-.composer #tree li li li li li li li > span { text-indent: 74px; }
-.composer #tree li li li li li li li li > span { text-indent: 84px; }
-.composer #tree li li li li li li li li li > span { text-indent: 94px; }
+.composer #tree li > span.selected { background-color: #e2e2e2; border-color: #e2e2e2; }
+.composer #tree li > span.input_selected { background-color: #93278F; border-color: #93278F; -webkit-box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, .75); box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, .75); text-indent: 0; }
+.composer #tree li > span.input_error { background-color: #c60f13; border-color: #c60f13; }
+.composer #tree li > span, .composer #tree li > span.input_selected input { text-indent: 14px; }
+.composer #tree li li > span, .composer #tree li li > span.input_selected input { text-indent: 24px; }
+.composer #tree li li li > span, .composer #tree li li li > span.input_selected input { text-indent: 34px; }
+.composer #tree li li li li > span, .composer #tree li li li li > span.input_selected input { text-indent: 44px; }
+.composer #tree li li li li li > span, .composer #tree li li li li li > span.input_selected input { text-indent: 54px; }
+.composer #tree li li li li li li > span, .composer #tree li li li li li li > span.input_selected input { text-indent: 64px; }
+.composer #tree li li li li li li li > span, .composer #tree li li li li li li li > span.input_selected input { text-indent: 74px; }
+.composer #tree li li li li li li li li > span, .composer #tree li li li li li li li li > span.input_selected input { text-indent: 84px; }
+.composer #tree li li li li li li li li li > span, .composer #tree li li li li li li li li li > span.input_selected input { text-indent: 94px; }
 /* ... actions buttons for rows in the tree view */
 .composer #tree_actions { display: none; position: relative; top: -2px; right: 12px; float: right; text-indent: 0; }
 .composer span.selected #tree_actions { display: block }
-.composer #tree_actions b { text-decoration: underline; font-weight: bold }
+.composer #tree_actions b { text-decoration: none; font-weight: bold; }
+.composer #tree_actions .dropdown b { position: absolute; right: 10px }
 .composer #tree_actions .button.dropdown > ul { left: auto; right: -1px; }
 .composer #tree_actions .button.dropdown > ul { top: 22px !important; } /* hack to fix Foundation's inability to have menu hidden at first */
+.composer #tree input { width: 300px; background-color: transparent; border: 0; color: #fff; background: none; font-weight: bold; font-size: 14px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.composer #tree input:focus { outline: none }
 
 /* ...key view */
 .composer #key { display: none; margin-top: 20px }
@@ -226,8 +231,15 @@ small { font-size: 80%; line-height: inherit; }
 .composer #key table .title td { color: #fff; padding: 5px 10px; }
 .composer #key td { padding: 3px 10px; }
 .composer #key td:first-child { width: 90%; }
-.composer #key td + td { font-weight: bold; text-align: center; color: #444; text-decoration: underline; }
+.composer #key td + td { font-weight: bold; text-align: center; color: #444; }
 .composer #key .glyph { text-decoration: none; color: #000; }
+
+/* ... for autocompletion input, edit JQuery UI CSS
+/* Copy of styles applied by jQuery UI 1.9.1 base stylesheet to `.ui-menu .ui-menu-item` */
+.ui-menu .ui-menu-item-disabled { margin: 0; padding: 0; zoom: 1; width: 100%; }
+/* Copy of styles applied by jQuery UI 1.9.1 base stylesheet to `.ui-menu .ui-menu-item a` */
+.ui-menu .ui-menu-item-disabled a { text-decoration: none; display: block; padding: 2px .4em; line-height: 1.5; zoom: 1; font-weight: normal; }
+.ui-menu .ui-menu-item-disabled a { color: #777; }
 
 /* Helpers */
 .left { float: left; }

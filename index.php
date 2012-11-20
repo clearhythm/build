@@ -59,6 +59,7 @@ switch ($page) {
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="stylesheets/foundation.min.css">
   <link rel="stylesheet" href="stylesheets/app.css">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
 
   <script src="javascripts/modernizr.foundation.js"></script>
 
@@ -119,14 +120,15 @@ switch ($page) {
 <div class="composer">
   <h5>Code Composer</h5>
   <span id="tree_actions" style="display: none">
-    <a id="action_delete" href="#" class="tiny secondary button"><b>x</b></a>
+    <a id="action_delete" href="#" class="tiny secondary button"><b style="text-decoration: underline">x</b></a>
     <div href="#" class="tiny primary button split dropdown">
-      <a id="action_insert" href="#"><b>i</b>nsert</a>
+      <a class="insert_node" data-insert-method="prepend" href="#">insert</a>
       <span></span>
       <ul>
-        <li><a id="action_insert_after" href="#" id="insert_after"><b>i</b> insert after</a></li>
-        <li><a id="action_insert_inside" href="#" id="insert_inside"><b>ii</b> insert inside</a></li>
-        <li><a id="action_insert_before" href="#" id="insert_before"><b>ib</b> insert before</a></li>
+        <li><a class="insert_node" data-insert-method="before" href="#">before</a></li>
+        <li><a class="insert_node" data-insert-method="prepend" href="#">&nbsp;&nbsp;&nbsp;first child</a></li>
+        <li><a class="insert_node" data-insert-method="append" href="#">&nbsp;&nbsp;&nbsp;last child</a></li>
+        <li><a class="insert_node" data-insert-method="after" href="#">after</a></li>
       </ul>
     </div>
   </span>
@@ -143,7 +145,7 @@ switch ($page) {
   </span>
   <div class="toolbar_buttons">
     <a href="#" id="view_switcher" class="insert small secondary button view_key">Key</a>
-    <a href="#" class="insert small secondary button view_key"><span class="shortcut">I</span>nsert</a>
+    <a href="#" id="insert_body" class="insert small secondary button"><span class="shortcut">I</span>nsert</a>
   </div>
   <ul id="tree">
     <?php if ($page == "banded") include 'banded_tree.html'; ?>
@@ -163,31 +165,35 @@ switch ($page) {
         <td class="glyph">&darr;</td>
       </tr>
       <tr>
-        <td>Toggle on / off (<em>shift-a</em>)</td>
-        <td>A</td>
+        <td>Toggle on / off</td>
+        <td>a</td>
       </tr>
       <tr class="title">
         <td colspan="2">Insertion, Deletion</td>
       </tr>
       <tr>
-        <td>Insert after selection</td>
-        <td>i</td>
+        <td>Insert into page body (<em>shift-i</em>)</td>
+        <td>I</td>
       </tr>
       <tr>
-        <td>Insert into selection</td>
-        <td>ii</td>
+        <td>Insert into (first child)</td>
+        <td>&lt;</td>
       </tr>
       <tr>
-        <td>insert before selection</td>
-        <td>ib</td>
+        <td>Insert into (last child)</td>
+        <td>&gt;</td>
+      </tr>
+      <tr>
+        <td>Insert before selection</td>
+        <td>,</td>
+      </tr>
+      <tr>
+        <td>insert after selection</td>
+        <td>.</td>
       </tr>
       <tr>
         <td>Delete current selection</td>
         <td>x</td>
-      </tr>
-      <tr>
-        <td>Insert into page body (<em>shift-i</em>)</td>
-        <td>I</td>
       </tr>
       <tr class="title">
         <td colspan="2">Scaffolding</td>
@@ -290,80 +296,20 @@ switch ($page) {
 -->
 
 <!-- Included JS Files (Compressed) -->
-<script src="javascripts/jquery.js"></script>
 <script src="javascripts/foundation.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 <script src="javascripts/handlebars-1.0.rc.1.min.js"></script>
 <script src="javascripts/underscore.min.js"></script>
-<script src="javascripts/jquery.hotkeys.js"></script>
 
 <!-- Initialize JS Plugins -->
 <script type="text/javascript">
   window.num_nodes = <?php echo $num_nodes; ?>;
 </script>
 <script src="javascripts/app.js"></script>
-<script src="javascripts/test_app.js"></script>
+<script src="javascripts/build_app.js"></script>
+<script src="javascripts/autocomplete.js"></script>
 
 <?php include 'templates.html'; ?>
-
-<script id="template-table" type="text/x-handlebars-template">
-  <table>
-    <thead>
-      <th>Username</th>
-      <th>Real Name</th>
-      <th>Email</th>
-    </thead>
-    <tbody>
-      {{#users}}
-        <tr>
-          <td>{{username}}</td>
-          <td>{{firstName}} {{lastName}}</td>
-          <td>{{email}}</td>
-        </tr>
-      {{/users}}
-    </tbody>
-  </table>
-</script>
-
-<script type="text/javascript">
-  window.template = {};
-  window.template.p = Handlebars.compile($("#template-p").html());
-  window.template.h1 = Handlebars.compile($("#template-h1").html());
-  window.template.h2 = Handlebars.compile($("#template-h2").html());
-  window.template.h3 = Handlebars.compile($("#template-h3").html());
-  window.template.h4 = Handlebars.compile($("#template-h4").html());
-  window.template.h5 = Handlebars.compile($("#template-h5").html());
-  window.template.h6 = Handlebars.compile($("#template-h6").html());
-  var data2 = { users: [
-      {username: "pagewrapper", firstName: "Page", lastName: "Wrapper", email: "ryan@test.com" }
-      ]};
-
-  function attachNewTemplate(template, node_id, method)
-  {
-    var data = {
-        copy: "Bacon ipsum dolor sit amet",
-        heading: "Heading",
-        subheading: "Subheading" };
-    var newNode = template(data);
-
-    // Note : the below functions are beginning to work, but comment out for push
-    // if (node_id == "body") $("#page_frame").contents().find("body").append(newNode);
-    // else $("#page_frame").contents().find("#view_"+node_id).append(newNode);
-    // if (method == "prepend")
-    // {
-    //   $('')
-    // }
-    // else if (method == "append")
-    // {
-    //   
-    // }
-    // else if (method == "into")
-    // {
-    //   
-    // }
-  }
-
-</script>
-
 
 </body>
 </html>

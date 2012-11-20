@@ -1,0 +1,42 @@
+For Insertion Rules:
+
+
+WORK TO DO
+*  DONE Shortcut keys
+*  Templates (insert into tree, view)
+    How it will work: We're going to have several ways to go into "input" mode, with these shortcut keys:
+    , = before
+    . = after
+    < = prepend
+    > = append
+    Once you are in an "insert" mode, you are looking at an input added to that spot, and you can type into the input...
+    'Enter' key tries to enter a node into the Tree, using following rules:
+      If you hit enter with no keys typed, it does nothing,
+      If you hit enter with keys typed, it tries to match the key sequence to a template.  If it finds one, it inserts it, and appends a new node (for fast repeat typing)
+      If it doesn't find one, it highlights the row as an error state "template not found"
+    'Esc' key removes you from input mode (first time) and deselects the node on the tree (second time)
+
+    We will use a new input in the line, you can type in the input (indented like before, and background highlight like before)
+    If user clicks away OR clicks enter, do the validation check
+      Valid? Replace the input with the template node we wanted
+      Invalid? Remove the input li (and select previously selected node)
+*  Insertion rules (use approach below)
+*  Grab HTML button (just spit out the view's HTML, and use JQuery .each to strip out an ids that match 'view_' string)
+
+
+----
+INSERTION RULES
+----
+We'll declare a global associative array
+
+rules [];
+
+rules.tag.whitelist = [] (an array of named elements that are "allowed")
+rules.tag.blacklist = [] (and array of named elements that are not "allowed")
+
+e.g., p.whitelist = ['a']
+
+or h1.blacklist = ['h2'];
+
+if there is no tag for the thing we're looking up (e.g., a 'row') then we assume all templates are fair game
+

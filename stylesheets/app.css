@@ -205,6 +205,7 @@ small { font-size: 80%; line-height: inherit; }
 .composer #tree li > span.selected { background-color: #e2e2e2; border-color: #e2e2e2; }
 .composer #tree li > span.input_selected { background-color: #93278F; border-color: #93278F; -webkit-box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, .75); box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, .75); text-indent: 0; }
 .composer #tree li > span.input_error { background-color: #c60f13; border-color: #c60f13; }
+/*.composer #tree li > span.input_error { background-color: #cf3d40; border-color: #cf3d40; }*/
 .composer #tree li > span, .composer #tree li > span.input_selected input { text-indent: 14px; }
 .composer #tree li li > span, .composer #tree li li > span.input_selected input { text-indent: 24px; }
 .composer #tree li li li > span, .composer #tree li li li > span.input_selected input { text-indent: 34px; }

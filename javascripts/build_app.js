@@ -186,8 +186,8 @@ function insertNode(method, node_id, e){
     }
   }
   // now add the new input field, focus it, and deselect the previously selected node
-  $tree_node[method]('<li><span class="selected input_selected"><input text="text"></span></li>');
-  var $tree_input = $('#tree').find('input');
+  $tree_node[method]('<li><span id="tree_'+build.component_id+'" class="selected input_selected"><input text="text"></span></li>');
+  var $tree_input = $('#tree_'+build.component_id).find('input');
   $tree_input.focus(); // focus on the input
   $tree_input.autocomplete(build.autocompleteInitOptions); // add autocompletion UI
   $('#tree_'+build.selected_node).removeClass('selected'); // deselect other nodes
@@ -198,19 +198,49 @@ function processNode(){
   {
     return;
   }
-  var input, user_entry;
-  $input = $('#tree').find('input');
-  user_entry = $input.val();
+  var $tree_node, user_entry;
+  $tree_node = $('#tree_'+build.component_id).parent();
+  user_entry = $tree_node.find('input').val();
   if (validateNodeInsertion(user_entry))
   {
-    // TODO : remove the input, then insert the node
     // remove the input
-    var $input_li = $input.parent().parent();
-    $input_li.find('span').remove();
+    $tree_node.find('span').remove();
     // insert the node here
-    $input.parent().remove();
-    insertTemplate(user_entry, build.selected_node, build.mode);
+    insertTemplate(user_entry, $tree_node, build.mode);
+    // select the new node and go back into "waiting" mode
+    selectNodeById(build.component_id);
+    build.mode = "waiting";
+    // finally, add new node to our build.nodes array and increment the global id counter, so next node added will have a unique id
+    addNewBuildNode(build.component_id);
+    build.component_id += 1;
   }
+}
+
+// insertTemplate : insert a new template into the tree and the view.  here's how it works...
+// for tree: take a node we're passed (the li that we originally created for the input) add the template into it (using append)
+// for view: find 'selected_node' and method, and execute the insertion using the template, selected_node, and method
+function insertTemplate(template, $tree_node, method)
+{
+  var data = {
+      copy: "Bacon ipsum dolor sit amet",
+      heading: "Heading",
+      subheading: "Subheading" };
+
+  // insert into tree
+  var tree_template = Handlebars.compile($("#template-tree-"+template).html());
+  var new_tree_template = tree_template(data);
+  new_tree_template = '<span id="tree_'+build.component_id+'" data-template="'+template+'">'+new_tree_template+'</span>';
+  $tree_node['append'](new_tree_template);
+
+  // insert into view
+  var view_template = Handlebars.compile($("#template-view-"+template).html());
+  var new_view_template = view_template(data);
+  // ... find the node where we'll do the insertion
+  var $view_node;
+  if (build.selected_node == "body") $view_node = $("#page_frame").contents().find("body");
+  else $view_node = $("#page_frame").contents().find("#view_"+build.selected_node);
+  // ... and insert
+  $view_node[method](new_view_template);
 }
 
 function validateNodeInsertion(user_entry){
@@ -231,32 +261,6 @@ function validateNodeInsertion(user_entry){
   }
   // Made it this far?  We're attempting a valid insertion, so return true
   return true;
-}
-
-function insertTemplate(template, node_id, method)
-{
-  var data = {
-      copy: "Bacon ipsum dolor sit amet",
-      heading: "Heading",
-      subheading: "Subheading" };
-  var view_template = Handlebars.compile($("#template-view-"+template).html());
-  var tree_template = Handlebars.compile($("#template-tree-"+template).html());
-  var new_view_template = view_template(data);
-  var new_tree_template = tree_template(data);
-  new_tree_template = '<li><span id="tree_'+build.component_id+'" data-template="'+template+'">'+new_tree_template+'</span></li>';
-
-  // now get the view and tree nodes where we'll do the insertion
-  var $view_node, $tree_node;
-  if (node_id == "body") $view_node = $("#page_frame").contents().find("body");
-  else $view_node = $("#page_frame").contents().find("#view_"+node_id);
-  // tree node...
-  $tree_node = $("#tree_"+node_id).parent();
-
-  $view_node[method](new_view_template);
-  $tree_node[method](new_tree_template);
-
-  // finally, increment the global id counter, so next node added will have a unique id
-  build.component_id += 1; // increment the counter
 }
 
 // --------------
@@ -445,6 +449,30 @@ function selectNextNode(){
   if (typeof new_node != 'undefined') selectNodeById(new_node, build.selected_node);
   // there are no more nodes, so go back to default selection
   else build.selected_node = build.default_node;
+}
+
+function addNewBuildNode(id){
+  // first, find the id we passed in the tree
+  var $target = $('#tree_'+id);
+  var spans = $('#tree').find('span');
+  var my_tree_index, my_build_nodes_index;
+  spans.each(function(i){
+    if ($(this).is($target)) {
+      my_tree_index = i;
+      return false;
+    }
+  });
+  console.log('my_tree_index', my_tree_index);
+  // did we add the first element?  if so, we're going to add to the beginning of the build.nodes array
+  if (my_tree_index == 0) my_build_nodes_index = 0;
+  else {
+    // now, find the previous element in the tree, and find its index in the build.nodes array
+    var previous_node_id = getStrippedId(spans.eq(my_tree_index-1).attr('id'));
+    my_build_nodes_index = _.indexOf(build.nodes, previous_node_id) + 1;
+  }
+  // splice it in
+  console.log('my_build_nodes_index', my_build_nodes_index);
+  build.nodes.splice(my_build_nodes_index,0,id);
 }
 
 // --------------
